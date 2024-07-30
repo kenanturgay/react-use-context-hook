@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 import LostChameleon from './assets/LostChameleon.mp3';
 import Rock from './assets/TheHipsta.mp3';
 import Tobu from './assets/Tobu.mp3';
 
-const MusicPlayerContext = React.createContext([{}, () => {}]);
+const MusicPlayerContext = createContext();
 
 const MusicPlayerProvider = (props) => {
   const [state, setState] = useState({
@@ -26,8 +26,8 @@ const MusicPlayerProvider = (props) => {
     isPlaying: false,
   });
   return (
-    <MusicPlayerContext.Provider value={[state, setState]}>
-      {props.children}
+    <MusicPlayerContext.Provider value={{state, setState}}>
+      {children}
     </MusicPlayerContext.Provider>
   );
 };
